@@ -21,7 +21,7 @@ pipeline {
 //         }
 //       }
       stage('Kustomize Run') {
-          steps {
+          container('kubectl') {
               dir('Kustomize/overlays/production') {
                   script {
                       sh """
