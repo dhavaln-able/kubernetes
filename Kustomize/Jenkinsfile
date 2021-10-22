@@ -21,16 +21,18 @@ pipeline {
 //         }
 //       }
       stage('Kustomize Run') {
-          container('kubectl') {
-              dir('Kustomize/overlays/production') {
-                  script {
-                      sh """
-                            kustomize build . | kubectl apply --record -f -
-                        """
-                      
-                      //kubernetesDeploy(configs: "kustomization.yaml", kubeconfigId: "mykubeconfig")
+          steps{
+              container('kubectl') {
+                  dir('Kustomize/overlays/production') {
+                      script {
+                          sh """
+                                kustomize build . | kubectl apply --record -f -
+                            """
+
+                          //kubernetesDeploy(configs: "kustomization.yaml", kubeconfigId: "mykubeconfig")
+                        }
                     }
-                }
+              }
           }
       }
               
