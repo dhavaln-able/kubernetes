@@ -22,7 +22,7 @@ pipeline {
       }
       stage('Kustomize Run') {
           steps {
-              dir('Kustomize/overlays/prod') {
+              dir('Kustomize/overlays/production') {
                   script {
                       sh "pwd"
                       kubernetesDeploy(configs: "kustomization.yaml", kubeconfigId: "mykubeconfig")
