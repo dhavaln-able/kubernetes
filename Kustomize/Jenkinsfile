@@ -24,8 +24,11 @@ pipeline {
           steps {
               dir('Kustomize/overlays/production') {
                   script {
-                      sh "pwd"
-                      kubernetesDeploy(configs: "kustomization.yaml", kubeconfigId: "mykubeconfig")
+                      sh """
+                            kustomize build . | kubectl apply --record -f -
+                        """
+                      
+                      //kubernetesDeploy(configs: "kustomization.yaml", kubeconfigId: "mykubeconfig")
                     }
                 }
           }
