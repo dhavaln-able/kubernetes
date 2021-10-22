@@ -14,12 +14,12 @@ pipeline {
               }
           }
       }
-      stage('Checkout GIT project') {
-        steps {
-            git branch: 'main', 
-            url: 'https://github.com/dhavaln-able/kubernetes.git'
-        }
-      }
+//       stage('Checkout GIT project') {
+//         steps {
+//             git branch: 'main', 
+//             url: 'https://github.com/dhavaln-able/kubernetes.git'
+//         }
+//       }
       stage('Kustomize Run') {
           steps {
               dir('Kustomize/overlays/production') {
