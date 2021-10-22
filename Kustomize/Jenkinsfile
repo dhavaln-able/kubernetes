@@ -1,0 +1,41 @@
+pipeline {
+    agent {
+        kubernetes {
+            label 'kubepod'
+            defaultContainer 'jnlp'
+        }
+    }
+    
+    stages {
+      stage('Sleep for 10 sec to check agent pod creation') {
+          steps {
+              script {
+                sleep(3)      
+              }
+          }
+      }
+      stage('Checkout GIT project') {
+        steps {
+            git branch: 'main', 
+            url: 'https://github.com/dhavaln-able/kubernetes.git'
+        }
+      }
+      stage('Kustomize Run') {
+          steps {
+              dir('Kustomize/overlays/prod') {
+                  script {
+                      sh "pwd"
+                      kubernetesDeploy(configs: "kustomization.yaml", kubeconfigId: "mykubeconfig")
+                    }
+                }
+          }
+      }
+              
+            // withKubeConfig([credentialsId: 'clusterk8sconfig', serverUrl: 'https://kubernetes.docker.internal:6443']) {
+            //     sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.20.5/bin/linux/amd64/kubectl"'  
+            //     sh 'chmod u+x ./kubectl'  
+            //     sh 'kustomize build . | ./kubectl apply -f -'
+            // }  
+      
+    }
+}
