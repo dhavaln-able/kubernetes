@@ -19,7 +19,7 @@ pipeline {
         stage('Kubernetes Deploy Plugin') {
             steps {
                 script {
-                    kubernetesDeploy(configs: "*.yaml", kubeconfigId: "mykubeconfig")
+                    kubernetesDeploy(configs: "$WORKSPACE/Kustomize/*.yaml", kubeconfigId: "mykubeconfig")
                 }
             }
         }
