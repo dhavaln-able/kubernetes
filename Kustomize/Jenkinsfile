@@ -21,9 +21,7 @@ pipeline {
                 sh 'chmod u+x ./kubectl'  
                 sh 'pwd'
                 sh './kubectl get pods -A'
-                  dir("kubernetes/Kustomize/"){
-                    sh './kubectl apply -f .'
-                  }
+                sh './kubectl apply -f kubernetes/Kustomize/*'                                            
               }
           }
       }
