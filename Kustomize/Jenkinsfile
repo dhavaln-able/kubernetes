@@ -21,7 +21,8 @@ pipeline {
                 sh 'chmod u+x ./kubectl'  
                 sh 'pwd'
                 sh './kubectl get pods -A'
-                sh './kubectl apply -f $WORKSPACE/kubernetes/Kustomize/'                                            
+                sh './kubectl apply -f $WORKSPACE/kubernetes/Kustomize/'    
+                  sh 'pwd'
               }
           }
       }
