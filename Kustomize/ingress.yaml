@@ -6,9 +6,10 @@ metadata:
     ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - http:
+  - host: kubernetes.docker.internal
+    http:
       paths:
-        - path: /apple
+        - path: /
           backend:
             serviceName: apple-service
             servicePort: 5678
