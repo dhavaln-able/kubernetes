@@ -22,8 +22,7 @@ pipeline {
                 sh 'pwd'
                   sh 'ls -alh'
                 sh './kubectl get pods -A'
-                sh './kubectl apply -f $WORKSPACE/kubernetes/Kustomize/'    
-                  sh 'pwd'
+                sh './kubectl apply -f $WORKSPACE/Kustomize/'    
               }
           }
       }
