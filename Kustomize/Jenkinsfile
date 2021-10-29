@@ -20,7 +20,7 @@ pipeline {
             steps {
                 dir("Kustomize/overlays/production/") {
                     script {
-                        kubernetesDeploy(configs: "*.yaml", kubeconfigId: "mykubeconfig")
+                        kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "mykubeconfig")
                     }
                 }
             }
