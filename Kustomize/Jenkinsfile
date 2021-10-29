@@ -18,8 +18,10 @@ pipeline {
 //       }
         stage('Kubernetes Deploy Plugin') {
             steps {
-                script {
-                    kubernetesDeploy(configs: "**/Kustomize/*.yaml", kubeconfigId: "mykubeconfig")
+                dir("Kustomize/overlays/production/") {
+                    script {
+                        kubernetesDeploy(configs: "*.yaml", kubeconfigId: "mykubeconfig")
+                    }
                 }
             }
         }
