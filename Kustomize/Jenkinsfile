@@ -18,11 +18,11 @@ pipeline {
 //       }
         stage('Kubernetes Deploy Plugin') {
             steps {
-                //dir("Kustomize/overlays/production/") {
+                dir("Kustomize/") {
                     script {
                         kubernetesDeploy(configs: "pod-svc.yaml", kubeconfigId: "mykubeconfig")
                     }
-                //}
+                }
             }
         }
     }
